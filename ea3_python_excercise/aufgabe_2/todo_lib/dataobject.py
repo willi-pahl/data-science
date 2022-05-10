@@ -1,3 +1,5 @@
+import copy
+
 class DataObject:
     """Save data in data structor without persitent save."""
     
@@ -35,12 +37,13 @@ class DataObject:
 
     # Select item.
     def select(this, id):
-        return this.items[id]
+        return copy.copy(this.items[id])
 
     # Get all data in structur.
     def selectAll(this):
-        print ('id \t done \t Tddo')
+        print ('id \t done \t Todo')
         for item in this.items:
             if this.items[item]['delete'] == 1:
                 continue
             print ('%i \t [%i] \t %s' % (item, this.items[item]['done'], this.items[item]['desc']))
+        print('\n')

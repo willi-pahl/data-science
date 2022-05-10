@@ -13,6 +13,7 @@ class SimpleTodo:
     def run(this):
         while (True):
             select = input('select your next action:')
+            print('\n')
             if (select == '1'):
                 this.addTodo()
             elif (select == '2'):
@@ -32,7 +33,7 @@ class SimpleTodo:
     def updateTodo(this):
         id = input('Todo ID:')
         desc = input('Description (empty for not update):')
-        done = input('Insert [y] todo is done:')
+        done = input('Insert [y] todo is done or [n]:')
 
         object = this.dataObject.select(int(id))
         object['id'] = int(id)
@@ -43,9 +44,9 @@ class SimpleTodo:
         else:
             object['done'] = 0
         
-        print(object)
+#        print(object)
 
-#        this.dataObject.update({'desc': desc, 'done': done, 'id': id})
+        this.dataObject.update(object)
 
         this.getAllTodos()
         return
@@ -58,4 +59,4 @@ class SimpleTodo:
 
     def getAllTodos(this):
         this.dataObject.selectAll()
-        print('Select the next action, enter number: create Todo: 1, update Todo: 2, delete Todo: 3 or exit: 4')
+        print('Select the next action, enter number: create Todo [1], update Todo [2], delete Todo [3] or exit [4]')
